@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import SpotifyAuth from '../SpotifyAuth/SpotifyAuth';
 
 const gradientAnimation = keyframes`
   0% {
@@ -23,25 +24,19 @@ const StyledDiv = styled.div`
 
 
 export default function Welcome({}) {
-
-let navigate =  useNavigate()
     
 function onGetStarted() {
-    console.log('Navigating to home')
-    navigate('/home')
+   
 }
 
     return (
         <>
         <StyledDiv>
          <div className='flex flex-col md:flex-row md:justify-around items-center justify-center h-screen'>
-         <h1 className="text-white md:text-blue-400 text-3xl mb-4 font-extrabold md:p-4 md:rounded md:bg-gradient-to-r from-green-500 to-black">Welcome to Mile...</h1>
+         <h1 className="text-gray-300 text-3xl mb-4 font-extrabold md:p-4 md:rounded md:bg-gradient-to-r from-green-500 to-black">Welcome to Mile...</h1>
           <div className='text-center font-mono'>
           <p className="text-gray-300 text-lg mb-8">Listen to your favorite songs for free</p>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto"
-      onClick={onGetStarted}>
-        Get Started
-      </button>
+          <SpotifyAuth />
           </div>
          </div>
         </StyledDiv>

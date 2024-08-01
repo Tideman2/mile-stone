@@ -1,8 +1,14 @@
+import UserProfile from "../UserProfile/UserProfile"
+import bodyStyle from './Home.module.css'
 
 export default function Home({}) {
+
+  
     return (
-        <div className="text-center">
-            <h1 className="">Welcome to home page</h1>
+        <>
+       <div id= {bodyStyle.card}>
+            <UserProfile />        
         </div>
+        </>
     )
 }
