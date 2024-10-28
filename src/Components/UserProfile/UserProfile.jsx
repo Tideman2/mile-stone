@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import { refreshToken } from "../../utils/refreshToken";
-import { data } from "autoprefixer";
-import { Await } from "react-router-dom";
 
 // dis function is were we will set de user profile and make de api call
+//gh
 export default function UserProfile() {
 let [user, setUser] = useState(null);
-let [Loading,  setLoading] = useState(true);
-let [error, setError] = useState(null);
+let [Loading,  setLoading] = useState(false);
+let [error, setError] = useState();
 
 useEffect(() => {
+   setLoading(true)
   async function fetcUser() {
     let userEndPoint = 'https://api.spotify.com/v1/me';
+    await refreshToken()
     let token = window.localStorage.getItem(`token`);
     console.log('Retrieved Token:', token)
-     
-    if(!token) {
-      token = await refreshToken();
-      window.localStorage.setItem('accessToken', token);
-        console.log('New Token Stored:', token)
-    }
+    let reaccesstoken = window.localStorage.getItem(`refresh_token`);
+    console.log('Retrieved refresed Token:', reaccesstoken)
+    
+   
     try {
         const response = await fetch(userEndPoint, {
             headers: {
@@ -33,11 +32,11 @@ useEffect(() => {
             console.log(data);
         } else {
             console.error(`Error: ${response.status} ${response.statusText}`);  // Log detailed error
-            setError(`Error: ${response.status} ${response.statusText}`);
+           throw new Error(`Error: ${response.status} ${response.statusText}`)
         }
     } catch (error) {
-        console.error('An error occurred:', error);  // Catch any unexpected errors
-        setError(`Error: ${error}`);
+        // Catch any unexpected errors
+        setError(`An error occurred: ${error}`);
     }finally {
       setLoading(false)
     }
@@ -48,16 +47,37 @@ useEffect(() => {
 }, [])
 
 if (Loading) return <p className="">Loading...</p>;
-if (error) return <p>{error}</p>;
+if (error) return <p className="text-red-500 bg-black p-2 text-center text-lg">{error}</p>;
 
-
+// Intentionally causing a runtime error by referencing an undefined variable
+//const undefinedVariable = nonexistentFunction(); // This will throw an error
 
 return (
   <>
-   <p></p>
-     workin
+   <section className="flex flex-wrap justify-between sm:max-w-fit">
+  <div className="font-serif md:mr-3 w-fit text-neutral-500 p-2 mt-auto bg-lime-50 mb-2
+   rounded-lg shadow-2xl">
+    {user ? (  // Check if user is not null
+      <>
+        <p className="">Welcome to miles {user.display_name}</p>
+        {/* Add any other properties you'd like to display */}
+      </>
+    ) : (
+      <p>No user data available.</p>  // Optional: Display a message if user data is not available
+    )}
+  </div>
+
+  {/* Render the image only if user and images exist */}
+  {user && user.images && user.images.length > 1 ? (
+    <img className="rounded-lg" src={user.images[1].url} alt="User Image" />
+  ) : (
+    <p>No image available.</p>  // Optional: Display a fallback message if no image exists
+  )}
+</section>
+
   </>
-)
+);
+
 
 }
 

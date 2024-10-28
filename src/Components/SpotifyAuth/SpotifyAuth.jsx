@@ -1,44 +1,38 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { refreshToken } from "../../utils/refreshToken";
+import { } from "react-router-dom";
+import generateCodeVerifier from "../../utils/generateCodeVerifier";
+import generateCodeChallenge from "../../utils/generateCodeChallenge";
 
 // Make sure to include quotes around URL strings
 const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = "http://localhost:3000/callback";
 const authEndpoint = "https://accounts.spotify.com/authorize";
-const tokenEndPoint = "https://accounts.spotify.com/api/token";
 const scopes = [
   'user-read-private',
   'user-read-email'
 ].join(' ');
 
 // 'offline_access',
+//gh
+const SpotifyAuth = () => { 
 
-const SpotifyAuth = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if the URL contains the access token
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem('token'); // 'token' as a string key
-    
-
-    if (!token && hash) {
-      const params = new URLSearchParams(hash.replace('#', '?'));
-      token = params.get('access_token'); // 'access_token' as a string
-      window.localStorage.setItem('token', token); // 'token' as a string key 
-      window.location.hash = ''; // Clear the hash
-      navigate('/home'); // Use quotes for string literals
-    }
-  }, [navigate]);
-
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!clientId) {
         console.error("Client ID is not set");
         return;
       }
+
+      // Generate code verifier and challenge
+  const codeVerifier = generateCodeVerifier(128);
+  const codeChallenge = await generateCodeChallenge(codeVerifier);
+
+  // Store the code verifier in localStorage for later use
+  window.localStorage.setItem('code_verifier', codeVerifier);
+ console.log(codeVerifier)
+
       // Redirect user to Spotify auth
-      window.location.href = `${authEndpoint}?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent(scopes)}`;
+      const authUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&code_challenge=${codeChallenge}&code_challenge_method=S256&scope=${encodeURIComponent(scopes)}`;
+      window.location.href = authUrl;
   };
 
   return (

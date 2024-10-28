@@ -13,10 +13,9 @@
 }
 
 
-#card {
-    background-color: black;
+.card {
     width: 95vw;
-    height: 99vh;
+    height: fit-content;
     border-radius: 0.5rem;
     position: relative;
     margin: 1rem;
@@ -29,8 +28,8 @@
     inherits: false;
 }
 
-#card::before,
-#card::after {
+.card::before,
+.card::after {
   content: " ";
   position: absolute;
   inset: -.5rem;
@@ -46,7 +45,7 @@
   animation: rotation 20s linear infinite;
 }
 
-#card::after{
+.card::after{
     filter: blur(3.5rem);
 }
 
