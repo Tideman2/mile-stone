@@ -60,10 +60,9 @@ return (
     {user ? (  // Check if user is not null
       <>
         <p className="">Welcome to miles {user.display_name}</p>
-        {/* Add any other properties you'd like to display */}
       </>
     ) : (
-      <p>No user data available.</p>  // Optional: Display a message if user data is not available
+      <p>No user data available.</p>  // Display a message if user data is not available
     )}
   </div>
 

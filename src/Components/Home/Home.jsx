@@ -1,10 +1,11 @@
-//gh
+//gh  " "
 
 import Display1 from '../Displays/Display1';
 import DisplaySongs from '../Displays/DisplaySongs';
 import { useContext, useEffect } from 'react';
 import { MusicContext } from '../contexts/Provider';
 import initPlayer from '../../utils/inintializePlayer';
+import Layout from "../layout/Layout"
 
 
 export default function Home({}) {

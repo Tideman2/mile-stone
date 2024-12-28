@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import generateCodeVerifier from "../../utils/generateCodeVerifier";
 import generateCodeChallenge from "../../utils/generateCodeChallenge";
 

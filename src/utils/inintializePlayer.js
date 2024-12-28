@@ -85,7 +85,12 @@ import { refreshToken } from "./refreshToken";
          reject(`Account Error: ${message}`)
        );
  
-       playerInstance.connect();
+       playerInstance.connect().then(success => {
+        if (success) {
+          console.log('The Web Playback SDK successfully connected to Spotify!');
+        }
+      })
+      
      };
    });
  }

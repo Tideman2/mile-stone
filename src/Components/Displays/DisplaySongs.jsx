@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react"
-import { MusicContext } from "../contexts/Provider"
+import { MusicContext } from "../contexts/Provider";
+import startPlaying from "../../utils/playMusic";
 
 import styles from './display1.module.css'
 //gh
 export default function DisplaySongs() {
   let {sharedData, setSharedData} = useContext(MusicContext)
-  let { searchedSongs, player  } = sharedData
+  let { searchedSongs, deviceId  } = sharedData
   console.log(searchedSongs)
 
  function onBackBtnClick() {
@@ -19,21 +20,14 @@ export default function DisplaySongs() {
     })
  }
 
- const handlePlay = (trackUri) => {
-  if (player) {
-    console.log(player)
-      player.play({
-          uris: [trackUri], // Pass the track URI here
-      })
-      .then(() => {
-          console.log(`Playing track: ${trackUri}`);
-      })
-      .catch((error) => {
-          console.error('Error playing track:', error);
-      });
-  } else {
-      console.error('Player is not initialized');
-  }
+ const handlePlay = async (song) => {
+ let { trackId } = song;
+ console.log(`i ot eeere`)
+   if(trackId, deviceId) {
+   await startPlaying(trackId, deviceId)
+   console.log(`i ot eeere`);
+   }
+ 
 };
 
 
@@ -41,7 +35,7 @@ export default function DisplaySongs() {
 
     return (
         <>
-      <div className={styles.card}>
+      <div>
   <div className="flex justify-around items-center">
     <h1 className="font-bold text-white text-2xl">Search results</h1>
     <button
@@ -56,7 +50,7 @@ export default function DisplaySongs() {
       {searchedSongs.map((song) => {
         return (
           <li key={song.id} className="mt-2 pl-2 flex flex-wrap items-center justify-around hover:bg-blue-100 h-16 rounded-lg">
-            <button onClick={() => {handlePlay(song.trackId)}} className="font-semibold font-serif my-auto bg-blue-500 text-white p-1
+            <button onClick={() => {handlePlay(song)}} className="font-semibold font-serif my-auto bg-blue-500 text-white p-1
              rounded-lg shadow-md hover:bg-blue-600 transition duration-200 ease-in-out"> play</button>
             <div className="flex flex-col justify-around">
             <p className="font-light my-auto">{song.artistName}</p>

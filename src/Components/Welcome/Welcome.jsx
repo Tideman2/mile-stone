@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import SpotifyAuth from '../SpotifyAuth/SpotifyAuth';
 
 const gradientAnimation = keyframes`
@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
 
 
 
-export default function Welcome({}) {
+export default function Welcome() {
 
   useEffect(() => {
     localStorage.clear(); // Clear local storage once when component mounts

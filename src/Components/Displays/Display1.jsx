@@ -11,7 +11,7 @@ export default function Display1({}) {
 
     return (
       <>
-      <div className={styles.card}>
+      <div>
       <ErrorBoundary>
         <UserProfile />
       </ErrorBoundary>

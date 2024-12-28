@@ -115,6 +115,7 @@ export default function SearchSong() {
        let { artists } = data;
        let { items } = artists;
        for( let item of items) {
+        console.log(items, `ddddd`)
            if(areWordsEqual(searchQuery, item.name)) {  
             console.log(item)
             let { name, images } = item;
