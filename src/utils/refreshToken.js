@@ -1,5 +1,5 @@
-const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET; // Store this securely
+const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID ;
+const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET ; // Store this securely
 const tokenEndpoint = `https://accounts.spotify.com/api/token`;
 //gh
 

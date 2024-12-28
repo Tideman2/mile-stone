@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { } from "react-router-dom";
 import generateCodeVerifier from "../../utils/generateCodeVerifier";
 import generateCodeChallenge from "../../utils/generateCodeChallenge";
 
@@ -8,9 +7,14 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = "http://localhost:3000/callback";
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const scopes = [
-  'user-read-private',
-  'user-read-email'
+  'user-read-private',              // Access user's private data
+  'user-read-email',                // Access user's email
+  'user-read-playback-state',       // Read playback state
+  'user-modify-playback-state',     // Modify playback (start, pause, skip, etc.)
+  'user-read-currently-playing',    // Read currently playing track
+  'streaming'                       // Required for playback via Web Playback SDK
 ].join(' ');
+
 
 // 'offline_access',
 //gh

@@ -6,7 +6,7 @@ import { refreshToken } from "./refreshToken";
   await refreshToken()
   let accessToken = localStorage.getItem('token')
    let query = encodeURIComponent(userSearchInput);
-    let response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${typeName}&offset=0&limit=20`, {
+    let response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${typeName}&offset=0&limit=10`, {
         method: `GET`,
         headers: {
         Authorization: `Bearer ${accessToken}`,

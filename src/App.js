@@ -5,7 +5,7 @@ import Callback from './Components/Callback/Callback';
 import SpotifyAuth from './Components/SpotifyAuth/SpotifyAuth';
 import MyProvider from './Components/contexts/Provider';
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 
