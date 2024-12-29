@@ -71,8 +71,8 @@ export default function SearchSong() {
        //To check if it is a track or artist the user wants to search for..
         if(typeName === `track`) {
            //organize song data
-          let organizedSongData = []
-          // for(let i = 0; i < data.tracks.items.length; i++) {
+          let organizedSongData = [];
+
             if (data.tracks && data.tracks.items && data.tracks.items.length > 0) {
               for(let i = 0; i < data.tracks.items.length; i++) { 
                 let artistName = data.tracks.items[i].artists[0].name;
@@ -87,6 +87,7 @@ export default function SearchSong() {
                   trackId,
                   id
                 }
+                
                 organizedSongData.push(organizesSong);
                 console.log(organizesSong);
               }
@@ -105,7 +106,6 @@ export default function SearchSong() {
           } else {
               console.log('No tracks found or track data is missing.');
           }
-          // }
         
 
        //if user querys an artist
