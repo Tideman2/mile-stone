@@ -4,12 +4,14 @@ import React, { useContext } from 'react';
 import { MusicContext } from "../contexts/Provider";
 
 function PrevBtn() {
-  let { player } = useContext(MusicContext).sharedData;
+  let { sharedData, updateRender } = useContext(MusicContext);
+  let { player } = sharedData;
 
   function handlePrev() {
     if (player) {
       player.previousTrack().then(() => {
         console.log('Set to previous track!');
+        updateRender()
       });
     }
   }

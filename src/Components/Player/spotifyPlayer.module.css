@@ -3,9 +3,25 @@
     justify-content: center;
     align-items: center;
     gap: 16px; /* Space between buttons */
-    padding: 16px;
+    padding: 10px;
     margin-bottom: 10px;
     background-color: #f9f9f9; /* Light background for visibility */
     border-radius: 8px; /* Optional: Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+
+  .artist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    color: green;
+    font-size: large;
+    background-color: #f9f9f9;;
+    margin-bottom: 0px;
+    padding: auto;
+  }
+
+  .wrapper {
+    background-color: #f9f9f9;;
   }

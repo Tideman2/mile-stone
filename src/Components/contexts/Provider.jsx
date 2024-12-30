@@ -15,6 +15,7 @@ export default function MyProvider({children}) {
         songToPlay: null,
         deviceId: null,
         player: null,
+        reRender: false,
     })
 
    function updatePlayer(value) {
@@ -31,8 +32,18 @@ export default function MyProvider({children}) {
         }
     }
 
+    function updateRender() {
+        setSharedData((prev) => {
+          let newData = {
+            ...prev,
+            reRender: !prev.reRender,
+          }
+          return newData
+        })
+    }
+
     return (
-        <MusicContext.Provider value={{sharedData, setSharedData, updatePlayer}}>
+        <MusicContext.Provider value={{sharedData, setSharedData, updatePlayer, updateRender}}>
             {children}
         </MusicContext.Provider>
     )
