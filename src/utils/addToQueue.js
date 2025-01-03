@@ -1,5 +1,7 @@
 //gh G
 import { refreshToken } from "./refreshToken";
+//REACT_APP_SPOTIFY_CLIENT_ID="05171321e7244c3fb679341ffb7fa324"
+//REACT_APP_SPOTIFY_CLIENT_SECRET="3e90a88959994195997cc03c9e8d8d58"
 
  async function addToQueue(songUri) {
     await refreshToken();
